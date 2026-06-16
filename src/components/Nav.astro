@@ -1,0 +1,139 @@
+---
+---
+
+<header>
+  <nav>
+    <a href="/" class="wordmark">The Askesis Project</a>
+
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/essays">Essays</a>
+        <a href="/about">About</a>
+        <a href="/support">Support</a>
+      </div>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color mode">
+        <!-- Sun: shown in dark mode → click to go light -->
+        <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1"     x2="12" y2="3"/>
+          <line x1="12" y1="21"    x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1"  y1="12"    x2="3"  y2="12"/>
+          <line x1="21" y1="12"    x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78"  x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon: shown in light mode → click to go dark -->
+        <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+
+<style>
+  nav {
+    display:         flex;
+    justify-content: space-between;
+    align-items:     center;
+    padding:         1.5rem 2.5rem;
+    border-bottom:   0.5px solid var(--color-cream-12);
+  }
+
+  .wordmark {
+    font-family:    var(--font-serif);
+    font-size:      15px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color:          var(--color-cream);
+  }
+
+  .nav-right {
+    display:     flex;
+    align-items: center;
+    gap:         1.75rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap:     2rem;
+  }
+
+  .nav-links a {
+    font-family:    var(--font-sans);
+    font-size:      11px;
+    font-weight:    400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color:          var(--color-cream-55);
+    transition:     color 0.15s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-cream);
+  }
+
+  /* ── Theme toggle ──────────────────────────────────────────── */
+
+  .theme-toggle {
+    background:  none;
+    border:      none;
+    padding:     0.2rem;
+    color:       var(--color-cream-55);
+    cursor:      pointer;
+    display:     flex;
+    align-items: center;
+    transition:  color 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-cream);
+  }
+
+  /* Default (dark): show sun, hide moon */
+  .icon-sun  { display: block; }
+  .icon-moon { display: none;  }
+
+  /* Light mode: show moon, hide sun */
+  :global([data-theme="light"]) .icon-sun  { display: none;  }
+  :global([data-theme="light"]) .icon-moon { display: block; }
+
+  /* ── Mobile ────────────────────────────────────────────────── */
+
+  @media (max-width: 600px) {
+    nav {
+      flex-direction: column;
+      align-items:    center;
+      padding:        1.25rem;
+      gap:            1rem;
+    }
+
+    .nav-right {
+      gap: 1.25rem;
+    }
+
+    .nav-links {
+      gap: 1.5rem;
+    }
+  }
+</style>

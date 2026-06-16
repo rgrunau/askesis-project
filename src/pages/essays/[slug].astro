@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import DonateStrip from '../../components/DonateStrip.astro';
+import { getAllPosts } from '../../data/essays';
+
+// Generate one static page per post at build time
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props:  { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+// Format date for display
+function formatDate(iso: string): string {
+  const d = new Date(iso + 'T12:00:00Z');
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+---
+
+<BaseLayout title={`${post.title} — The Askesis Project`} description={post.excerpt}>
+  <Nav />
+
+  <main>
+    <article class="essay">
+      <!-- Header -->
+      <header class="essay-header">
+        <a href="/essays" class="back-link section-label">← All essays</a>
+        <h1 class="essay-title">{post.title}</h1>
+        <p class="essay-meta">
+          <time datetime={post.date}>{formatDate(post.date)}</time>
+          <span class="meta-sep">·</span>
+          <span>{post.readingTime}</span>
+          <span class="meta-sep">·</span>
+          <a href={post.substackUrl} target="_blank" rel="noopener noreferrer" class="substack-link">
+            Read on Substack ↗
+          </a>
+        </p>
+      </header>
+
+      <!-- Body: full HTML from RSS feed -->
+      <div class="essay-body" set:html={post.content} />
+
+      <!-- Footer CTA -->
+      <footer class="essay-footer">
+        <a
+          href={post.substackUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+        >
+          View original on Substack ↗
+        </a>
+        <a href="/essays" class="btn-secondary">← Back to essays</a>
+      </footer>
+    </article>
+
+    <DonateStrip />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* ── Layout ─────────────────────────────────────────────────── */
+  .essay {
+    max-width: var(--max-width);
+    margin:    0 auto;
+    padding:   4rem 2.5rem 5rem;
+  }
+
+  /* ── Header ─────────────────────────────────────────────────── */
+  .essay-header {
+    margin-bottom: 3rem;
+  }
+
+  .back-link {
+    display:       block;
+    margin-bottom: 1.5rem;
+    transition:    opacity 0.15s ease;
+  }
+
+  .back-link:hover {
+    opacity: 0.6;
+  }
+
+  .essay-title {
+    font-family:   var(--font-serif);
+    font-size:     2.2rem;
+    font-weight:   400;
+    line-height:   1.2;
+    margin-bottom: 1rem;
+  }
+
+  .essay-meta {
+    display:        flex;
+    align-items:    center;
+    flex-wrap:      wrap;
+    gap:            0.5rem;
+    font-family:    var(--font-sans);
+    font-size:      11px;
+    font-weight:    300;
+    color:          var(--color-cream-55);  /* 4.92:1 ✓ AA */
+    letter-spacing: 0.04em;
+  }
+
+  .meta-sep {
+    color: var(--color-cream-20);
+  }
+
+  .substack-link {
+    color:      var(--color-cream-55);  /* 4.92:1 ✓ AA */
+    transition: color 0.15s ease;
+  }
+
+  .substack-link:hover {
+    color: var(--color-cream-72);
+  }
+
+  /* ── Body prose ─────────────────────────────────────────────── */
+  .essay-body {
+    font-family: var(--font-serif);
+    font-size:   1.15rem;
+    line-height: 1.85;
+    color:       var(--color-cream-72);
+  }
+
+  .essay-body :global(p) {
+    margin-bottom: 1.5em;
+  }
+
+  .essay-body :global(h2) {
+    font-family:   var(--font-serif);
+    font-size:     1.5rem;
+    font-weight:   400;
+    color:         var(--color-cream);
+    margin:        2.5em 0 0.75em;
+    line-height:   1.25;
+  }
+
+  .essay-body :global(h3) {
+    font-family:   var(--font-serif);
+    font-size:     1.2rem;
+    font-weight:   400;
+    color:         var(--color-cream);
+    margin:        2em 0 0.5em;
+    line-height:   1.3;
+  }
+
+  .essay-body :global(em),
+  .essay-body :global(i) {
+    font-style: italic;
+  }
+
+  .essay-body :global(strong),
+  .essay-body :global(b) {
+    font-weight: 500;
+    color:       var(--color-cream-85);
+  }
+
+  .essay-body :global(a) {
+    color:           var(--color-cream-55);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition:      color 0.15s ease;
+  }
+
+  .essay-body :global(a:hover) {
+    color: var(--color-cream-72);
+  }
+
+  .essay-body :global(blockquote) {
+    border-left:  2px solid var(--color-cream-20);
+    margin:       2em 0;
+    padding-left: 1.5rem;
+    color:        var(--color-cream-55);
+    font-style:   italic;
+  }
+
+  .essay-body :global(hr) {
+    border:     none;
+    border-top: 0.5px solid var(--color-cream-12);
+    margin:     3em 0;
+  }
+
+  .essay-body :global(img) {
+    max-width:     100%;
+    height:        auto;
+    margin:        2em 0;
+    opacity:       0.85;
+  }
+
+  /* ── Footer CTA ─────────────────────────────────────────────── */
+  .essay-footer {
+    display:    flex;
+    gap:        1rem;
+    flex-wrap:  wrap;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--color-cream-08);
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .essay {
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .essay-title {
+      font-size: 1.8rem;
+    }
+
+    .essay-footer {
+      flex-direction: column;
+    }
+  }
+</style>

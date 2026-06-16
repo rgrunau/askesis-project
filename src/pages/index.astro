@@ -1,0 +1,287 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import EssayCard from "../components/EssayCard.astro";
+import DonateStrip from "../components/DonateStrip.astro";
+import { getRecentPosts } from "../data/essays";
+
+// Fetch 3 most recent posts from Substack at build time
+const recentPosts = await getRecentPosts(3);
+---
+
+<BaseLayout
+  title="The Askesis Project"
+  description="A publication on self-cultivation. Essays on attention, practice, and the examined life."
+>
+  <Nav />
+
+  <main>
+    <!-- ── Hero ─────────────────────────────────────────────── -->
+    <section class="hero">
+      <span class="section-label hero-eyebrow"
+        >A publication on self-cultivation</span
+      >
+
+      <div class="hero-headline">
+        <h1>
+          Life as a practice,<br />
+          <em class="h1-secondary">not a project to be optimized.</em>
+        </h1>
+
+        <div class="hero-image-wrap">
+          <img
+            src="/enso.png"
+            alt="Enso — emblem of The Askesis Project"
+            class="hero-image"
+            width="1640"
+            height="1758"
+          />
+        </div>
+      </div>
+
+      <p class="lede">
+        The Greek ἄσκησις (askēsis) comes from the verb ἀσκέω (askeō) — to work,
+        to exercise, to practice a craft with care. It came to mean a
+        disciplined practice centered around shaping one's mind, body, and
+        character.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/essays" class="btn-primary">Read the essays</a>
+        <a href="/about" class="btn-secondary">What is askesis?</a>
+      </div>
+    </section>
+
+    <!-- ── Definition block ─────────────────────────────────── -->
+    <section class="definition">
+      <div class="definition-inner">
+        <span class="greek-term">ἄσκησις</span>
+        <div class="definition-body">
+          <p>
+            Askesis application of self-discipline, movement, and character
+            formation used to develop one’s self; physically and mentally.
+            Coming from the root word asken: to exercise. From a philosophical
+            standpoint, it describes the consistent daily effort needed for self
+            transformation. This isn’t asceticism, not discipline disguised as
+            denialism, it applied effort toward meaningful change; a process of
+            becoming. The Askesis project started as a document of one person’s
+            midlife personal transformation. Here you’ll find the tools I used,
+            and the experiences I had while reshaping my life with intention.
+          </p>
+          <p></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Recent essays ────────────────────────────────────── -->
+  <section class="recent-essays">
+    <div class="recent-essays-inner">
+      <span class="section-label" style="margin-bottom: 0.25rem;"
+        >Recent essays</span
+      >
+
+      {
+        recentPosts.length > 0 ? (
+          recentPosts.map((post) => (
+            <EssayCard
+              title={post.title}
+              date={post.date}
+              slug={post.slug}
+              readingTime={post.readingTime}
+            />
+          ))
+        ) : (
+          <p class="empty-state">Essays coming soon.</p>
+        )
+      }
+
+      <div class="view-all">
+        <a href="/essays" class="btn-secondary">View all essays</a>
+      </div>
+    </div>
+  </section>
+
+  <DonateStrip />
+</BaseLayout>
+
+<Footer />
+
+<style>
+  /* ── Hero ───────────────────────────────────────────────────── */
+  .hero {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 7rem 2.5rem 5rem;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Hero headline row: image left + h1 right ──────────────── */
+
+  .hero-headline {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.18;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .h1-secondary {
+    color: var(--color-cream-65);
+    font-style: italic;
+  }
+
+  /* Lede: full-width centered below the headline row */
+  .lede {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: var(--color-cream-72);
+    max-width: 620px;
+    margin: 0 auto 2.25rem;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  /* ── Enso image ─────────────────────────────────────────────── */
+
+  .hero-image-wrap {
+    flex-shrink: 0;
+    width: 200px;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Dark mode: invert black→white strokes; screen blend drops the black bg */
+    filter: invert(1);
+    mix-blend-mode: screen;
+    transition: filter 0.2s ease;
+  }
+
+  :global([data-theme="light"]) .hero-image {
+    /* Light mode: multiply drops the white bg against the cream page */
+    filter: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* ── Definition ─────────────────────────────────────────────── */
+  .definition {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem;
+    border-top: 0.5px solid var(--color-cream-08);
+  }
+
+  .definition-inner {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .greek-term {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-style: italic;
+    color: var(--color-cream-55);
+    flex-shrink: 0;
+    line-height: 1.3;
+    padding-top: 0.1em;
+  }
+
+  .definition-body p {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-cream-72);
+  }
+
+  .definition-body strong {
+    color: var(--color-cream-85);
+    font-weight: 500;
+  }
+
+  /* ── Recent essays ──────────────────────────────────────────── */
+  .recent-essays {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem 5rem;
+  }
+
+  .recent-essays-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .view-all {
+    margin-top: 1.75rem;
+  }
+
+  .empty-state {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--color-cream-55); /* 4.92:1 ✓ AA */
+    padding: 1.5rem 0;
+    border-top: 0.5px solid var(--color-cream-08);
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .hero {
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .hero-headline {
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
+    .hero-image-wrap {
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    .definition {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .definition-inner {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .greek-term {
+      font-size: 1.8rem;
+    }
+
+    .recent-essays {
+      padding: 2rem 1.5rem 4rem;
+    }
+  }
+</style>

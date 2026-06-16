@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import DonateStrip from "../components/DonateStrip.astro";
+---
+
+<BaseLayout
+  title="About — The Askesis Project"
+  description="What the Askesis Project is, and why it exists."
+>
+  <Nav />
+
+  <main>
+    <section class="about-content">
+      <span class="section-label">About</span>
+      <h1>What is askesis?</h1>
+
+      <div class="body-text">
+        <p>
+          The ancient Greeks had a word, <em>askēsis</em>, for the kind of
+          disciplined practice that shapes a person from the inside. It began as
+          a term from athletics — the daily repetition of physical training —
+          and was gradually claimed by philosophers who saw that the same logic
+          applied to the cultivation of character.
+        </p>
+        <p>
+          The Stoics practiced poverty days, cold baths, and fasting — not from
+          asceticism for its own sake, but to test themselves against their own
+          philosophy. Ignatius of Loyola gave the word to the Western spiritual
+          tradition. It eventually gave us "ascetic." But at its root,
+          <em>askēsis</em> was simply about practice: the belief that who you are
+          is something you can work on.
+        </p>
+        <p>
+          This publication is built on that belief. It is an attempt to think
+          seriously about self-cultivation — not as self-improvement in the
+          contemporary sense, but in the older, more demanding sense: the
+          formation of a person capable of living well.
+        </p>
+      </div>
+    </section>
+
+    <DonateStrip />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .about-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 6rem 2.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0.75rem 0 2.5rem;
+  }
+
+  .body-text p {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--color-cream-72);
+  }
+
+  .body-text p + p {
+    margin-top: 1.5rem;
+  }
+
+  .body-text em {
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .about-content {
+      padding: 4rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+    }
+  }
+</style>
