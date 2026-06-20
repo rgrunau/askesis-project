@@ -7,7 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- HERO -->
   <section style="position: relative; overflow: hidden;">
     <div class="wrapper" style="padding-top: 96px; padding-bottom: 120px;">
-      <img src="/enso.png" alt="" aria-hidden="true" style="position: absolute; top: 50%; right: -80px; transform: translateY(-50%); width: 620px; height: 620px; object-fit: contain; opacity: 0.06; pointer-events: none;" />
+      <img src="/enso.png" alt="" aria-hidden="true" class="enso-watermark" style="position: absolute; top: 50%; right: 40px; transform: translateY(-50%); width: 620px; height: 620px; object-fit: contain; pointer-events: none;" />
       <div style="position: relative; max-width: 760px;">
         <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #a35c41; margin-bottom: 30px;">ἄσκησις &nbsp;·&nbsp; áskēsis &nbsp;·&nbsp; to&nbsp;exercise</div>
         <h1 style="font-size: 78px; line-height: 1.04; font-weight: 400; letter-spacing: -0.018em; margin: 0 0 32px; text-wrap: balance;">Life as a practice,<br>not a project to be <em style="font-weight: 400;">optimized.</em></h1>
@@ -109,6 +109,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
 .offering-card:hover { border-color: rgba(26,23,20,0.45) !important; }
+
+.enso-watermark { opacity: 0.8; }
+@media (max-width: 640px) {
+  .enso-watermark { opacity: 0.10; }
+}
 
 @media (max-width: 1024px) {
   .definition-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
