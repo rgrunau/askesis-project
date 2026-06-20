@@ -3,7 +3,6 @@ export const hero = {
   heading: 'Life as a practice,\nnot a project to be <em>optimized.</em>',
   body: "The consistent daily effort of shaping a mind, a body, and a character — on purpose. This began as the record of one person's midlife transformation. Here are the tools, and what they cost.",
   ctas: [
-    { label: 'Work with me  →', href: '/practice', external: false },
     { label: 'Read on Substack ↗', href: 'https://askesisproject.substack.com', external: true },
   ],
 };
