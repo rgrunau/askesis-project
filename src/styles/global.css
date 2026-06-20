@@ -1,162 +1,100 @@
-/* ============================================================
-   The Askesis Project — Global Styles
-   ============================================================ */
-
-:root {
-  /* Core palette */
-  --color-bg:    #1a1714;
-  --color-cream: #e8e0d0;
-
-  /* Foreground opacity scale (cream on dark) */
-  --color-cream-85: rgba(232, 224, 208, 0.85);
-  --color-cream-72: rgba(232, 224, 208, 0.72);
-  --color-cream-65: rgba(232, 224, 208, 0.65);
-  --color-cream-60: rgba(232, 224, 208, 0.60);  /* 5.63:1 — AA secondary text  */
-  --color-cream-55: rgba(232, 224, 208, 0.55);  /* 4.92:1 — AA minimum         */
-  --color-cream-50: rgba(232, 224, 208, 0.50);  /* 4.30:1 — decorative only    */
-  --color-cream-38: rgba(232, 224, 208, 0.38);
-  --color-cream-30: rgba(232, 224, 208, 0.38);  /* per spec */
-  --color-cream-25: rgba(232, 224, 208, 0.25);
-  --color-cream-20: rgba(232, 224, 208, 0.20);
-  --color-cream-12: rgba(232, 224, 208, 0.12);
-  --color-cream-08: rgba(232, 224, 208, 0.08);
-  --color-cream-04: rgba(232, 224, 208, 0.04);
-
-  /* Typography */
-  --font-serif: 'EB Garamond', Georgia, serif;
-  --font-sans:  'DM Sans', system-ui, sans-serif;
-
-  /* Layout */
-  --max-width: 960px;
-}
-
-/* ── Light mode ─────────────────────────────────────────────── */
-
-[data-theme="light"] {
-  --color-bg:    #e8e0d0;
-  --color-cream: #1a1714;
-
-  --color-cream-85: rgba(26, 23, 20, 0.85);
-  --color-cream-72: rgba(26, 23, 20, 0.72);
-  --color-cream-65: rgba(26, 23, 20, 0.65);
-  --color-cream-60: rgba(26, 23, 20, 0.60);
-  --color-cream-55: rgba(26, 23, 20, 0.55);
-  --color-cream-50: rgba(26, 23, 20, 0.50);
-  --color-cream-38: rgba(26, 23, 20, 0.38);
-  --color-cream-30: rgba(26, 23, 20, 0.38);
-  --color-cream-25: rgba(26, 23, 20, 0.25);
-  --color-cream-20: rgba(26, 23, 20, 0.20);
-  --color-cream-12: rgba(26, 23, 20, 0.12);
-  --color-cream-08: rgba(26, 23, 20, 0.08);
-  --color-cream-04: rgba(26, 23, 20, 0.04);
-}
-
-/* ── Reset ─────────────────────────────────────────────────── */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 body {
-  margin:  0;
-  padding: 0;
-}
-
-body {
-  background:             var(--color-bg);
-  color:                  var(--color-cream);
-  font-family:            var(--font-sans);
-  font-weight:            300;
+  background: #f3efe6;
+  font-family: 'Newsreader', Georgia, serif;
+  color: #1a1714;
   -webkit-font-smoothing: antialiased;
-  transition:             background-color 0.2s ease, color 0.2s ease;
+  line-height: 1.5;
 }
+::selection { background: #1a1714; color: #f3efe6; }
 
-h1, h2, h3, h4, h5, h6 {
-  margin:      0;
-  font-weight: 400;
-}
+button { cursor: pointer; border-radius: 0; }
+input, textarea { border-radius: 0; }
 
-ul, ol {
-  list-style: none;
-  margin:     0;
-  padding:    0;
-}
-
-p {
-  margin: 0;
-}
-
-a {
-  color:           inherit;
+.nav-link {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  color: #8a8175;
   text-decoration: none;
+  display: inline-block;
 }
-
-img {
-  display:   block;
-  max-width: 100%;
+.nav-link:hover { color: #1a1714; }
+.nav-link[aria-current="page"] {
+  color: #1a1714;
+  border-bottom-color: #a35c41;
 }
-
-button {
-  border-radius: 0;
-  cursor:        pointer;
-}
-
-/* ── Buttons ────────────────────────────────────────────────── */
 
 .btn-primary {
-  display:         inline-block;
-  background:      var(--color-cream);
-  color:           var(--color-bg);
-  border:          none;
-  border-radius:   0;
-  cursor:          pointer;
-  font-family:     var(--font-sans);
-  font-size:       11px;
-  font-weight:     400;
-  letter-spacing:  0.12em;
-  text-transform:  uppercase;
-  padding:         0.75rem 1.75rem;
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  padding: 15px 28px;
+  background: #1a1714;
+  color: #f3efe6;
+  border: 1px solid #1a1714;
+  cursor: pointer;
   text-decoration: none;
-  transition:      opacity 0.15s ease;
+  display: inline-block;
 }
+.btn-primary:hover { background: #34302a; }
 
-.btn-primary:hover {
-  opacity: 0.88;
-}
-
-.btn-secondary {
-  display:         inline-block;
-  background:      transparent;
-  color:           var(--color-cream-55);
-  border:          0.5px solid var(--color-cream-20);
-  border-radius:   0;
-  cursor:          pointer;
-  font-family:     var(--font-sans);
-  font-size:       11px;
-  font-weight:     400;
-  letter-spacing:  0.12em;
-  text-transform:  uppercase;
-  padding:         0.75rem 1.75rem;
+.btn-outline {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  padding: 15px 28px;
+  background: transparent;
+  color: #1a1714;
+  border: 1px solid rgba(26,23,20,0.30);
+  cursor: pointer;
   text-decoration: none;
-  transition:      border-color 0.15s ease, color 0.15s ease;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: #1a1714; }
+
+.btn-cream {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 17px 30px;
+  background: #ece5d6;
+  color: #1a1714;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+}
+.btn-cream:hover { background: #fff; }
+
+.btn-dark {
+  font-family: 'Spline Sans Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 13px 24px;
+  background: #1a1714;
+  color: #f3efe6;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-dark:hover { background: #34302a; }
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
 }
 
-.btn-secondary:hover {
-  color:        var(--color-cream);
-  border-color: var(--color-cream-38);
+@media (max-width: 1024px) {
+  .wrapper { padding: 0 28px; }
 }
-
-/* ── Utility ────────────────────────────────────────────────── */
-
-.section-label {
-  display:        block;
-  font-family:    var(--font-sans);
-  font-size:      10px;
-  font-weight:    400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color:          var(--color-cream-55);
+@media (max-width: 640px) {
+  .wrapper { padding: 0 20px; }
 }
