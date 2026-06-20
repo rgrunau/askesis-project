@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact — The Askesis Project" currentPage="/contact">
+
+  <section>
+    <div class="wrapper" style="padding-top: 96px; padding-bottom: 110px;">
+      <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 480px; gap: 72px; align-items: start;">
+
+        <!-- LEFT: info -->
+        <div style="max-width: 520px;">
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #a35c41; margin-bottom: 30px;">Contact</div>
+          <h1 style="font-size: 58px; line-height: 1.07; font-weight: 400; letter-spacing: -0.018em; margin: 0 0 26px; text-wrap: balance;">Tell me where you're starting from.</h1>
+          <p style="font-size: 19px; line-height: 1.65; color: #4a443c; margin: 0 0 40px;">Coaching enquiries, questions about the writing, or just a note. I read everything and reply to most.</p>
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="display: flex; gap: 16px; align-items: baseline; border-top: 1px solid rgba(26,23,20,0.12); padding-top: 18px;">
+              <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8175; width: 90px; flex-shrink: 0;">Email</span>
+              <span style="font-size: 18px;">hello@askesisproject.com</span>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: baseline; border-top: 1px solid rgba(26,23,20,0.12); padding-top: 18px;">
+              <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8175; width: 90px; flex-shrink: 0;">Substack</span>
+              <span style="font-size: 18px;">askesisproject.substack.com</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: form -->
+        <div data-fs-success style="display: none; font-family: 'Spline Sans Mono', monospace; font-size: 14px; color: #4a443c; padding: 38px 34px; background: #efe9dd; border: 1px solid rgba(26,23,20,0.12);">
+          Sent — thank you. I'll be in touch.
+        </div>
+        <div data-fs-error style="display: none; font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: #a35c41; margin-top: 8px;"></div>
+
+        <form
+          id="contact-form"
+          style="background: #efe9dd; border: 1px solid rgba(26,23,20,0.12); padding: 38px 34px;"
+        >
+          <div style="display: flex; flex-direction: column; gap: 22px;">
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6f675b;">Name</span>
+              <input type="text" name="name" required data-fs-field style="font-family: 'Newsreader', serif; font-size: 17px; padding: 13px 14px; background: #f3efe6; border: 1px solid rgba(26,23,20,0.18); outline: none; color: #1a1714; border-radius: 0;" />
+              <span data-fs-error="name" style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; color: #a35c41;"></span>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6f675b;">Email</span>
+              <input type="email" name="email" required data-fs-field style="font-family: 'Newsreader', serif; font-size: 17px; padding: 13px 14px; background: #f3efe6; border: 1px solid rgba(26,23,20,0.18); outline: none; color: #1a1714; border-radius: 0;" />
+              <span data-fs-error="email" style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; color: #a35c41;"></span>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6f675b;">What are you working on?</span>
+              <textarea name="message" rows="4" required data-fs-field style="font-family: 'Newsreader', serif; font-size: 17px; padding: 13px 14px; background: #f3efe6; border: 1px solid rgba(26,23,20,0.18); outline: none; color: #1a1714; resize: vertical; line-height: 1.5; border-radius: 0;"></textarea>
+              <span data-fs-error="message" style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; color: #a35c41;"></span>
+            </label>
+            <button type="submit" data-fs-submit-btn class="btn-dark" style="width: 100%; padding: 15px; font-size: 13px;">Send</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+import { initForm } from '@formspree/ajax';
+initForm({ formElement: '#contact-form', formId: 'xlgyrgag' });
+</script>
+
+<style>
+@media (max-width: 1024px) {
+  .contact-grid { grid-template-columns: 1fr !important; }
+  h1 { font-size: 44px !important; }
+}
+@media (max-width: 640px) {
+  h1 { font-size: 36px !important; }
+}
+</style>

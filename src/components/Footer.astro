@@ -1,31 +1,65 @@
 ---
+interface Props {
+  currentPage?: string;
+}
+const { currentPage = '' } = Astro.props;
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Practice', href: '/practice' },
+  { label: 'Contact', href: '/contact' },
+];
 ---
 
-<footer>
-  <span>© The Askesis Project</span>
-  <span>Seattle, WA</span>
+<footer style="border-top: 1px solid rgba(26,23,20,0.12); background: #efe9dd;">
+  <div class="wrapper" style="padding-top: 72px; padding-bottom: 44px;">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; padding-bottom: 56px;" class="footer-grid">
+      <div>
+        <div style="display: flex; align-items: center; gap: 13px; margin-bottom: 20px;">
+          <img src="/enso.png" alt="" style="width: 34px; height: 34px; object-fit: contain;" />
+          <span style="font-size: 17px; font-weight: 500;">The Askesis Project</span>
+        </div>
+        <p style="font-size: 16px; line-height: 1.6; color: #6f675b; margin: 0; max-width: 320px; font-style: italic;">Life as a practice, not a project to be optimized.</p>
+      </div>
+      <div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8175; margin-bottom: 18px;">Pages</div>
+        <div style="display: flex; flex-direction: column; gap: 11px; align-items: flex-start;">
+          {navLinks.map(link => (
+            <a href={link.href} style="background: none; border: none; padding: 0; font-family: 'Newsreader', serif; font-size: 16px; color: #4a443c; text-decoration: none;" onmouseover="this.style.color='#1a1714'" onmouseout="this.style.color='#4a443c'">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8175; margin-bottom: 18px;">Elsewhere</div>
+        <div style="display: flex; flex-direction: column; gap: 11px; align-items: flex-start; font-size: 16px; color: #4a443c;">
+          <a href="https://askesisproject.substack.com" target="_blank" rel="noopener" style="color: #4a443c; text-decoration: none;" onmouseover="this.style.color='#1a1714'" onmouseout="this.style.color='#4a443c'">Substack</a>
+          <a href="#" style="color: #4a443c; text-decoration: none;" onmouseover="this.style.color='#1a1714'" onmouseout="this.style.color='#4a443c'">Instagram</a>
+          <a href="mailto:hello@askesisproject.com" style="color: #4a443c; text-decoration: none;" onmouseover="this.style.color='#1a1714'" onmouseout="this.style.color='#4a443c'">hello@askesisproject.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(26,23,20,0.12); padding-top: 26px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #8a8175; letter-spacing: 0.03em;">
+      <span>© 2026 The Askesis Project</span>
+      <span>ἄσκησις — the consistent daily effort of becoming</span>
+    </div>
+  </div>
 </footer>
 
 <style>
-  footer {
-    display:         flex;
-    justify-content: space-between;
-    align-items:     center;
-    border-top:      0.5px solid var(--color-cream-12);
-    padding:         2rem 2.5rem;
-    font-family:     var(--font-sans);
-    font-size:       11px;
-    font-weight:     400;
-    color:           var(--color-cream-55);
-    letter-spacing:  0.06em;
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
   }
-
-  @media (max-width: 600px) {
-    footer {
-      flex-direction: column;
-      align-items:    center;
-      text-align:     center;
-      gap:            0.5rem;
-    }
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1;
   }
+}
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 </style>
