@@ -11,13 +11,13 @@ import { contactPageCopy, contactForm } from '../data/contact';
 
         <!-- LEFT: info -->
         <div style="max-width: 520px;">
-          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #a35c41; margin-bottom: 30px;">{contactPageCopy.eyebrow}</div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #c98a6e; margin-bottom: 30px;">{contactPageCopy.eyebrow}</div>
           <h1 style="font-size: 58px; line-height: 1.07; font-weight: 400; letter-spacing: -0.018em; margin: 0 0 26px; text-wrap: balance;">{contactPageCopy.heading}</h1>
-          <p style="font-size: 19px; line-height: 1.65; color: #4a443c; margin: 0 0 40px;">{contactPageCopy.body}</p>
+          <p style="font-size: 19px; line-height: 1.65; color: #cdc3b2; margin: 0 0 40px;">{contactPageCopy.body}</p>
           <div style="display: flex; flex-direction: column; gap: 18px;">
             {contactPageCopy.contactDetails.map((detail) => (
-              <div style="display: flex; gap: 16px; align-items: baseline; border-top: 1px solid rgba(26,23,20,0.12); padding-top: 18px;">
-                <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8175; width: 90px; flex-shrink: 0;">{detail.label}</span>
+              <div style="display: flex; gap: 16px; align-items: baseline; border-top: 1px solid rgba(236,229,214,0.12); padding-top: 18px;">
+                <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #9a9186; width: 90px; flex-shrink: 0;">{detail.label}</span>
                 <span style="font-size: 18px;">{detail.value}</span>
               </div>
             ))}
@@ -25,25 +25,25 @@ import { contactPageCopy, contactForm } from '../data/contact';
         </div>
 
         <!-- RIGHT: form -->
-        <div data-fs-success style="display: none; font-family: 'Spline Sans Mono', monospace; font-size: 14px; color: #4a443c; padding: 38px 34px; background: #efe9dd; border: 1px solid rgba(26,23,20,0.12);">
+        <div data-fs-success style="display: none; font-family: 'Spline Sans Mono', monospace; font-size: 14px; color: #cdc3b2; padding: 38px 34px; background: #201c17; border: 1px solid rgba(236,229,214,0.12);">
           {contactForm.successMessage}
         </div>
-        <div data-fs-error style="display: none; font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: #a35c41; margin-top: 8px;"></div>
+        <div data-fs-error style="display: none; font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: #c98a6e; margin-top: 8px;"></div>
 
         <form
           id="contact-form"
-          style="background: #efe9dd; border: 1px solid rgba(26,23,20,0.12); padding: 38px 34px;"
+          style="background: #201c17; border: 1px solid rgba(236,229,214,0.12); padding: 38px 34px;"
         >
           <div style="display: flex; flex-direction: column; gap: 22px;">
             {contactForm.fields.map((field) => (
               <label style="display: flex; flex-direction: column; gap: 8px;">
-                <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6f675b;">{field.label}</span>
+                <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #9a9186;">{field.label}</span>
                 {field.type === 'textarea' ? (
-                  <textarea name={field.name} rows={4} required data-fs-field style="font-family: 'Newsreader', serif; font-size: 17px; padding: 13px 14px; background: #f3efe6; border: 1px solid rgba(26,23,20,0.18); outline: none; color: #1a1714; resize: vertical; line-height: 1.5; border-radius: 0;"></textarea>
+                  <textarea name={field.name} rows={4} required data-fs-field style="font-family: 'Newsreader', serif; font-size: 17px; padding: 13px 14px; background: #221e19; border: 1px solid rgba(236,229,214,0.18); outline: none; color: #ece5d6; resize: vertical; line-height: 1.5; border-radius: 0;"></textarea>
                 ) : (
-                  <input type={field.type} name={field.name} required data-fs-field style="font-family: 'Newsreader', serif; font-size: 17px; padding: 13px 14px; background: #f3efe6; border: 1px solid rgba(26,23,20,0.18); outline: none; color: #1a1714; border-radius: 0;" />
+                  <input type={field.type} name={field.name} required data-fs-field style="font-family: 'Newsreader', serif; font-size: 17px; padding: 13px 14px; background: #221e19; border: 1px solid rgba(236,229,214,0.18); outline: none; color: #ece5d6; border-radius: 0;" />
                 )}
-                <span data-fs-error={field.name} style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; color: #a35c41;"></span>
+                <span data-fs-error={field.name} style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; color: #c98a6e;"></span>
               </label>
             ))}
             <button type="submit" data-fs-submit-btn class="btn-dark" style="width: 100%; padding: 15px; font-size: 13px;">{contactForm.submitLabel}</button>
