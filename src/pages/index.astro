@@ -75,7 +75,7 @@ import { hero, definition, pillars, fieldNote } from '../data/home';
   .trace-label { position: absolute; right: 5%; bottom: 9%; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--text-faint); }
   .margin-question { position: absolute; z-index: 3; right: 42px; bottom: 60px; width: 250px; transform: rotate(-4deg); }
   .margin-question span { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-faint); }
-  .margin-question p { margin: 7px 0 0; font-family: 'Bradley Hand', 'Segoe Print', cursive; font-size: 20px; color: var(--text); }
+  .margin-question p { margin: 7px 0 0; font-family: 'Caveat', 'Bradley Hand', cursive; font-size: 27px; line-height: 1.05; color: var(--text); }
   .margin-question svg { position: absolute; inset: -15px -6px auto; overflow: visible; }
   .margin-question path { fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linecap: round; opacity: .75; }
   .definition-section { background: var(--bg-alt); border-bottom: 1px solid var(--line); }
@@ -115,12 +115,12 @@ import { hero, definition, pillars, fieldNote } from '../data/home';
   .impact-field i { width: 10px; height: 10px; border: 1px solid var(--ink); border-radius: 50%; transform: scale(calc(.55 + (var(--i) % 5) * .11)); }
   .impact-field i:nth-child(4n) { background: var(--ink); }
   @media (max-width: 900px) {
-    .hero-trace { left: 42%; opacity: .52; }.margin-question { display: none; }.definition-grid { grid-template-columns: 1fr; gap: 36px; }.practice-sequence { grid-template-columns: 1fr; }
+    .hero-trace { left: 42%; opacity: .52; }.margin-question { right: 28px; bottom: 45px; }.definition-grid { grid-template-columns: 1fr; gap: 36px; }.practice-sequence { grid-template-columns: 1fr; }
     .practice-card, .practice-card:first-child { min-height: auto; border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); }.field-note-grid { grid-template-columns: 110px 1fr; }.impact-field { display: none; }
   }
   @media (max-width: 640px) {
     .home-hero, .hero-inner { min-height: 650px; }.hero-inner { padding-top: 82px; padding-bottom: 72px; align-items: flex-start; }h1 { font-size: 51px; }.hero-copy > p { font-size: 18px; }
-    .hero-trace { inset: 22% -35% 0 25%; opacity: .4; }.definition-grid { padding-top: 76px; padding-bottom: 78px; }.practice-section { padding: 78px 0 84px; }.section-heading > span { display: none; }
+    .hero-trace { inset: 22% -35% 0 25%; opacity: .4; }.margin-question { right: auto; left: 24px; bottom: 96px; width: 235px; transform: rotate(-3deg); }.margin-question p { font-size: 25px; }.definition-grid { padding-top: 76px; padding-bottom: 78px; }.practice-section { padding: 78px 0 84px; }.section-heading > span { display: none; }
     .practice-card { padding: 26px 24px 34px; }.field-note-grid { min-height: 470px; padding-top: 64px; padding-bottom: 68px; grid-template-columns: 1fr; gap: 42px; }blockquote p { font-size: 42px; }
   }
 </style>
