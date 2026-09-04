@@ -18,10 +18,6 @@ import { hero, definition, pillars, fieldNote } from '../data/home';
           {hero.ctas.map((cta) => <a href={cta.href} class={cta.external ? 'btn-outline' : 'btn-primary'} target={cta.external ? '_blank' : undefined} rel={cta.external ? 'noopener' : undefined}>{cta.label}</a>)}
         </div>
       </div>
-      <aside class="margin-question" aria-label="A question for reflection">
-        <span>an inquiry</span><p>{fieldNote.question}</p>
-        <svg viewBox="0 0 250 92" aria-hidden="true"><path d="M8 67C38 14 189 2 232 38c34 29-41 51-114 44C45 76 10 55 28 30" /></svg>
-      </aside>
     </div>
   </section>
 
@@ -41,7 +37,7 @@ import { hero, definition, pillars, fieldNote } from '../data/home';
         {pillars.items.map((pillar, index) => (
           <article class="practice-card">
             <div class="practice-meta"><span>0{index + 1}</span><span>{pillar.glyph}</span></div>
-            <div class={`practice-mark practice-mark-${index + 1}`} aria-hidden="true">{Array.from({ length: index === 2 ? 49 : 1 }).map(() => <i></i>)}</div>
+            <div class={`practice-mark practice-mark-${index + 1}`} aria-hidden="true">{Array.from({ length: index === 0 ? 7 : index === 2 ? 49 : 1 }).map(() => <i></i>)}</div>
             <h3>{pillar.title}</h3><p>{pillar.body}</p>
           </article>
         ))}
@@ -73,11 +69,6 @@ import { hero, definition, pillars, fieldNote } from '../data/home';
   .trace-three { top: 18%; right: -1%; border-width: 14px; border-color: rgba(201,138,110,.055); transform: rotate(51deg) scale(.72); }
   .trace-axis { position: absolute; width: 1px; height: 78%; top: 11%; left: 52%; background: linear-gradient(transparent, var(--line), transparent); transform: rotate(14deg); }
   .trace-label { position: absolute; right: 5%; bottom: 9%; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--text-faint); }
-  .margin-question { position: absolute; z-index: 3; right: 42px; bottom: 60px; width: 250px; transform: rotate(-4deg); }
-  .margin-question span { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-faint); }
-  .margin-question p { margin: 7px 0 0; font-family: 'Caveat', 'Bradley Hand', cursive; font-size: 27px; line-height: 1.05; color: var(--text); }
-  .margin-question svg { position: absolute; inset: -15px -6px auto; overflow: visible; }
-  .margin-question path { fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linecap: round; opacity: .75; }
   .definition-section { background: var(--bg-alt); border-bottom: 1px solid var(--line); }
   .definition-grid { display: grid; grid-template-columns: 190px 1fr; gap: 64px; padding-top: 104px; padding-bottom: 108px; }
   .section-index { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-faint); display: flex; gap: 18px; }
@@ -97,7 +88,17 @@ import { hero, definition, pillars, fieldNote } from '../data/home';
   .practice-meta span:last-child { color: var(--accent); font-family: 'Newsreader', serif; font-size: 21px; }
   .practice-mark { height: 165px; margin: 28px 0 24px; position: relative; display: grid; place-items: center; }
   .practice-mark i { display: block; width: 58px; height: 58px; border: 1px solid var(--accent); border-radius: 51% 47% 54% 44%; }
-  .practice-mark-1 i { box-shadow: 13px -9px 0 -12px var(--accent), -18px 12px 0 -14px var(--text); }
+  .practice-mark-1 { display: flex; justify-content: center; align-items: center; padding-left: 18px; }
+  .practice-mark-1 i { width: 54px; height: 54px; flex: 0 0 54px; margin-left: -20px; border-color: rgba(201,138,110,.46); transform: rotate(-8deg) scale(.88); }
+  .practice-mark-1 i:nth-child(2) { transform: translateY(-2px) rotate(13deg) scale(.92); opacity: .72; }
+  .practice-mark-1 i:nth-child(3) { transform: translateY(2px) rotate(-17deg) scale(.95); opacity: .78; }
+  .practice-mark-1 i:nth-child(4) { transform: translateY(-1px) rotate(21deg); opacity: .86; }
+  .practice-mark-1 i:nth-child(5) { transform: translateY(1px) rotate(-12deg) scale(1.03); opacity: .9; }
+  .practice-mark-1 i:nth-child(6) { transform: translateY(-2px) rotate(15deg) scale(1.07); opacity: .95; }
+  .practice-mark-1 i:nth-child(7) { transform: rotate(-6deg) scale(1.12); border-color: var(--accent); }
+  .practice-mark-1::before, .practice-mark-1::after { content: ''; position: absolute; left: 17%; right: 13%; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,138,110,.15), rgba(201,138,110,.48)); }
+  .practice-mark-1::before { transform: translateY(-31px) rotate(-1deg); }
+  .practice-mark-1::after { transform: translateY(31px) rotate(1deg); }
   .practice-mark-2 i { width: 108px; height: 108px; border-color: var(--text-muted); border-radius: 50%; box-shadow: 0 0 0 18px rgba(236,229,214,.025), 0 0 0 38px rgba(236,229,214,.02); }
   .practice-mark-3 { grid-template-columns: repeat(7, 9px); align-content: center; justify-content: center; gap: 6px; transform: rotate(-4deg); }
   .practice-mark-3 i { width: 8px; height: 8px; border: 0; background: var(--accent); opacity: .18; }
@@ -115,12 +116,12 @@ import { hero, definition, pillars, fieldNote } from '../data/home';
   .impact-field i { width: 10px; height: 10px; border: 1px solid var(--ink); border-radius: 50%; transform: scale(calc(.55 + (var(--i) % 5) * .11)); }
   .impact-field i:nth-child(4n) { background: var(--ink); }
   @media (max-width: 900px) {
-    .hero-trace { left: 42%; opacity: .52; }.margin-question { right: 28px; bottom: 45px; }.definition-grid { grid-template-columns: 1fr; gap: 36px; }.practice-sequence { grid-template-columns: 1fr; }
+    .hero-trace { left: 42%; opacity: .52; }.definition-grid { grid-template-columns: 1fr; gap: 36px; }.practice-sequence { grid-template-columns: 1fr; }
     .practice-card, .practice-card:first-child { min-height: auto; border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); }.field-note-grid { grid-template-columns: 110px 1fr; }.impact-field { display: none; }
   }
   @media (max-width: 640px) {
     .home-hero, .hero-inner { min-height: 650px; }.hero-inner { padding-top: 82px; padding-bottom: 72px; align-items: flex-start; }h1 { font-size: 51px; }.hero-copy > p { font-size: 18px; }
-    .hero-trace { inset: 22% -35% 0 25%; opacity: .4; }.margin-question { right: auto; left: 24px; bottom: 96px; width: 235px; transform: rotate(-3deg); }.margin-question p { font-size: 25px; }.definition-grid { padding-top: 76px; padding-bottom: 78px; }.practice-section { padding: 78px 0 84px; }.section-heading > span { display: none; }
+    .hero-trace { inset: 22% -35% 0 25%; opacity: .4; }.definition-grid { padding-top: 76px; padding-bottom: 78px; }.practice-section { padding: 78px 0 84px; }.section-heading > span { display: none; }
     .practice-card { padding: 26px 24px 34px; }.field-note-grid { min-height: 470px; padding-top: 64px; padding-bottom: 68px; grid-template-columns: 1fr; gap: 42px; }blockquote p { font-size: 42px; }
   }
 </style>

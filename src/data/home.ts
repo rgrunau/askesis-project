@@ -43,7 +43,6 @@ export const pillars = {
 };
 
 export const fieldNote = {
-  question: "What am I practicing becoming?",
   statement: "Movement leaves a trace. Inquiry leaves a trace. Repeated traces become character.",
   note: "Practice is not preparation for life. It is the shape a life takes.",
 };
