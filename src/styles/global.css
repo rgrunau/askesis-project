@@ -12,6 +12,9 @@
   --accent: #c98a6e;
   --accent-strong: #a35c41;
   --cream-hover: #d9d0bd;
+  --line: rgba(236,229,214,0.12);
+  --ink: #1a1714;
+  --mono: 'Spline Sans Mono', monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -23,6 +26,8 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
 }
+main { overflow: hidden; }
+a, button { transition: color .2s ease, background-color .2s ease, border-color .2s ease, opacity .2s ease; }
 ::selection { background: var(--text); color: var(--bg); }
 
 button { cursor: pointer; border-radius: 0; }

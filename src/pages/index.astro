@@ -1,77 +1,126 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { hero, definition, pillars } from '../data/home';
+import { hero, definition, pillars, fieldNote } from '../data/home';
 ---
 
 <BaseLayout title="The Askesis Project" currentPage="/">
-
-  <!-- HERO -->
-  <section style="position: relative; overflow: hidden;">
-    <div class="wrapper" style="padding-top: 96px; padding-bottom: 120px;">
-      <span aria-hidden="true" class="enso-watermark" style="position: absolute; top: 50%; right: 40px; transform: translateY(-50%); width: 620px; height: 620px; pointer-events: none; display: block; background-color: #ece5d6; -webkit-mask-image: url(/enso.png); mask-image: url(/enso.png); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center;"></span>
-      <div style="position: relative; max-width: 760px;">
-        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #c98a6e; margin-bottom: 30px;" set:html={hero.eyebrow} />
-        <h1 style="font-size: 78px; line-height: 1.04; font-weight: 400; letter-spacing: -0.018em; margin: 0 0 32px; text-wrap: balance;" set:html={hero.heading.replace('\n', '<br>')} />
-        <p style="font-size: 22px; line-height: 1.55; color: #cdc3b2; max-width: 560px; margin: 0 0 44px;">{hero.body}</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-          {hero.ctas.map((cta) => (
-            <a
-              href={cta.href}
-              class={cta.external ? 'btn-outline' : 'btn-primary'}
-              target={cta.external ? '_blank' : undefined}
-              rel={cta.external ? 'noopener' : undefined}
-            >{cta.label}</a>
-          ))}
+  <section class="home-hero">
+    <div class="hero-trace" aria-hidden="true">
+      <span class="trace trace-one"></span><span class="trace trace-two"></span><span class="trace trace-three"></span>
+      <span class="trace-axis"></span><span class="trace-label">σῶμα / 0001</span>
+    </div>
+    <div class="wrapper hero-inner">
+      <div class="hero-copy">
+        <div class="kicker" set:html={hero.eyebrow} />
+        <h1 set:html={hero.heading.replace('\n', '<br>')} />
+        <p>{hero.body}</p>
+        <div class="hero-actions">
+          {hero.ctas.map((cta) => <a href={cta.href} class={cta.external ? 'btn-outline' : 'btn-primary'} target={cta.external ? '_blank' : undefined} rel={cta.external ? 'noopener' : undefined}>{cta.label}</a>)}
         </div>
       </div>
+      <aside class="margin-question" aria-label="A question for reflection">
+        <span>an inquiry</span><p>{fieldNote.question}</p>
+        <svg viewBox="0 0 250 92" aria-hidden="true"><path d="M8 67C38 14 189 2 232 38c34 29-41 51-114 44C45 76 10 55 28 30" /></svg>
+      </aside>
     </div>
   </section>
 
-  <!-- DEFINITION -->
-  <section style="border-top: 1px solid rgba(236,229,214,0.10); background: #201c17;">
-    <div class="wrapper" style="padding-top: 88px; padding-bottom: 88px;">
-      <div class="definition-grid" style="display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start;">
-        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #9a9186; padding-top: 14px;">{definition.label}</div>
-        <div style="max-width: 720px;">
-          <p style="font-size: 30px; line-height: 1.45; font-weight: 400; margin: 0 0 28px; letter-spacing: -0.01em; text-wrap: pretty;" set:html={definition.lead} />
-          <p style="font-size: 19px; line-height: 1.65; color: #cdc3b2; margin: 0; max-width: 600px;">{definition.body}</p>
-        </div>
-      </div>
+  <section class="definition-section">
+    <div class="wrapper definition-grid">
+      <div class="section-index"><span>01</span><span>{definition.label}</span></div>
+      <div class="definition-copy"><p class="definition-lead" set:html={definition.lead} /><p>{definition.body}</p></div>
     </div>
   </section>
 
-  <!-- PILLARS -->
-  <section>
-    <div class="wrapper" style="padding-top: 96px; padding-bottom: 96px;">
-      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 56px; border-bottom: 1px solid rgba(236,229,214,0.12); padding-bottom: 22px;">
-        <h2 style="font-size: 17px; font-family: 'Spline Sans Mono', monospace; font-weight: 500; letter-spacing: 0.04em; margin: 0; text-transform: uppercase; color: #ece5d6;">{pillars.heading}</h2>
-        <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #9a9186; letter-spacing: 0.04em;">{pillars.subheading}</span>
-      </div>
-      <div class="pillars-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(236,229,214,0.12); border: 1px solid rgba(236,229,214,0.12);">
-        {pillars.items.map((p) => (
-          <div style="background: #221e19; padding: 40px 34px 46px; min-height: 280px;">
-            <div style="font-family: 'Newsreader', serif; font-size: 40px; color: #c98a6e; margin-bottom: 24px; line-height: 1;">{p.glyph}</div>
-            <h3 style="font-size: 26px; font-weight: 500; margin: 0 0 6px; letter-spacing: -0.01em; color: #ece5d6;">{p.title}</h3>
-            <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #9a9186; margin-bottom: 18px;">{p.greek}</div>
-            <p style="font-size: 17px; line-height: 1.6; color: #cdc3b2; margin: 0;">{p.body}</p>
-          </div>
+  <section class="practice-section">
+    <div class="wrapper">
+      <header class="section-heading">
+        <div><span class="section-index">02</span><h2>{pillars.heading}</h2></div><span>{pillars.subheading}</span>
+      </header>
+      <div class="practice-sequence">
+        {pillars.items.map((pillar, index) => (
+          <article class="practice-card">
+            <div class="practice-meta"><span>0{index + 1}</span><span>{pillar.glyph}</span></div>
+            <div class={`practice-mark practice-mark-${index + 1}`} aria-hidden="true">{Array.from({ length: index === 2 ? 49 : 1 }).map(() => <i></i>)}</div>
+            <h3>{pillar.title}</h3><p>{pillar.body}</p>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
+  <section class="field-note-section">
+    <div class="wrapper field-note-grid">
+      <div class="field-note-label"><span>Field note / 0001</span><span>ἦθος</span></div>
+      <blockquote><p>{fieldNote.statement}</p><footer>{fieldNote.note}</footer></blockquote>
+      <div class="impact-field" aria-hidden="true">{Array.from({ length: 81 }).map((_, index) => <i style={`--i:${index}`}></i>)}</div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-.enso-watermark { opacity: 0.8; }
-@media (max-width: 640px) {
-  .enso-watermark { opacity: 0.10; }
-}
-@media (max-width: 1024px) {
-  .definition-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-  .pillars-grid { grid-template-columns: 1fr !important; }
-}
-@media (max-width: 640px) {
-  h1 { font-size: 44px !important; line-height: 1.08 !important; }
-}
+  .home-hero { min-height: 760px; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .hero-inner { min-height: 680px; padding-top: 122px; padding-bottom: 96px; position: relative; display: flex; align-items: center; }
+  .hero-copy { position: relative; z-index: 2; max-width: 780px; }
+  .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--accent); margin-bottom: 34px; }
+  h1 { max-width: 850px; margin: 0 0 32px; font-size: clamp(56px, 7.1vw, 102px); font-weight: 350; line-height: .94; letter-spacing: -.045em; text-wrap: balance; }
+  h1 :global(em) { color: var(--accent); font-weight: 300; }
+  .hero-copy > p { max-width: 590px; margin: 0 0 40px; color: var(--text-body); font-size: 20px; line-height: 1.58; }
+  .hero-actions { display: flex; gap: 14px; }
+  .hero-trace { position: absolute; inset: 0 0 0 48%; opacity: .78; pointer-events: none; }
+  .trace { position: absolute; top: 8%; right: 5%; width: min(50vw, 650px); aspect-ratio: 1; border: 1px solid rgba(201,138,110,.2); border-radius: 48% 52% 46% 54%; transform: rotate(-18deg); }
+  .trace-two { top: 13%; right: 10%; border-color: rgba(236,229,214,.14); transform: rotate(19deg) scale(.87); }
+  .trace-three { top: 18%; right: -1%; border-width: 14px; border-color: rgba(201,138,110,.055); transform: rotate(51deg) scale(.72); }
+  .trace-axis { position: absolute; width: 1px; height: 78%; top: 11%; left: 52%; background: linear-gradient(transparent, var(--line), transparent); transform: rotate(14deg); }
+  .trace-label { position: absolute; right: 5%; bottom: 9%; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--text-faint); }
+  .margin-question { position: absolute; z-index: 3; right: 42px; bottom: 60px; width: 250px; transform: rotate(-4deg); }
+  .margin-question span { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-faint); }
+  .margin-question p { margin: 7px 0 0; font-family: 'Bradley Hand', 'Segoe Print', cursive; font-size: 20px; color: var(--text); }
+  .margin-question svg { position: absolute; inset: -15px -6px auto; overflow: visible; }
+  .margin-question path { fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linecap: round; opacity: .75; }
+  .definition-section { background: var(--bg-alt); border-bottom: 1px solid var(--line); }
+  .definition-grid { display: grid; grid-template-columns: 190px 1fr; gap: 64px; padding-top: 104px; padding-bottom: 108px; }
+  .section-index { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-faint); display: flex; gap: 18px; }
+  .definition-copy { max-width: 830px; }
+  .definition-lead { margin: 0 0 30px; font-size: clamp(29px, 3.1vw, 44px); line-height: 1.25; letter-spacing: -.02em; }
+  .definition-lead :global(em) { color: var(--accent); }
+  .definition-copy > p:last-child { margin: 0; max-width: 660px; color: var(--text-body); font-size: 18px; line-height: 1.7; }
+  .practice-section { padding: 110px 0 120px; }
+  .section-heading { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .section-heading > div { display: flex; gap: 28px; align-items: baseline; }
+  .section-heading h2 { margin: 0; font: 500 14px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .section-heading > span { font: 11px/1 var(--mono); color: var(--text-muted); letter-spacing: .1em; }
+  .practice-sequence { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .practice-card { min-height: 470px; padding: 30px 30px 38px; border-right: 1px solid var(--line); }
+  .practice-card:first-child { border-left: 1px solid var(--line); }
+  .practice-meta { display: flex; justify-content: space-between; font: 10px/1 var(--mono); letter-spacing: .14em; color: var(--text-muted); }
+  .practice-meta span:last-child { color: var(--accent); font-family: 'Newsreader', serif; font-size: 21px; }
+  .practice-mark { height: 165px; margin: 28px 0 24px; position: relative; display: grid; place-items: center; }
+  .practice-mark i { display: block; width: 58px; height: 58px; border: 1px solid var(--accent); border-radius: 51% 47% 54% 44%; }
+  .practice-mark-1 i { box-shadow: 13px -9px 0 -12px var(--accent), -18px 12px 0 -14px var(--text); }
+  .practice-mark-2 i { width: 108px; height: 108px; border-color: var(--text-muted); border-radius: 50%; box-shadow: 0 0 0 18px rgba(236,229,214,.025), 0 0 0 38px rgba(236,229,214,.02); }
+  .practice-mark-3 { grid-template-columns: repeat(7, 9px); align-content: center; justify-content: center; gap: 6px; transform: rotate(-4deg); }
+  .practice-mark-3 i { width: 8px; height: 8px; border: 0; background: var(--accent); opacity: .18; }
+  .practice-mark-3 i:nth-child(3n), .practice-mark-3 i:nth-child(7n) { opacity: .85; transform: scale(1.35); }
+  .practice-card h3 { margin: 0 0 14px; font-size: 31px; font-weight: 400; }
+  .practice-card > p { margin: 0; color: var(--text-body); font-size: 16px; line-height: 1.65; }
+  .field-note-section { background: var(--accent); color: var(--ink); overflow: hidden; }
+  .field-note-grid { min-height: 530px; padding-top: 88px; padding-bottom: 88px; display: grid; grid-template-columns: 160px minmax(400px, 1fr) 330px; gap: 52px; align-items: center; }
+  .field-note-label { align-self: start; display: flex; flex-direction: column; gap: 10px; font: 10px/1.2 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+  .field-note-label span:last-child { font: 32px/1 'Newsreader', serif; }
+  blockquote { margin: 0; position: relative; z-index: 2; }
+  blockquote p { max-width: 720px; margin: 0 0 28px; font-size: clamp(40px, 5vw, 68px); line-height: 1.02; letter-spacing: -.035em; }
+  blockquote footer { font: 11px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+  .impact-field { display: grid; grid-template-columns: repeat(9, 10px); gap: 16px; transform: rotate(7deg); opacity: .65; }
+  .impact-field i { width: 10px; height: 10px; border: 1px solid var(--ink); border-radius: 50%; transform: scale(calc(.55 + (var(--i) % 5) * .11)); }
+  .impact-field i:nth-child(4n) { background: var(--ink); }
+  @media (max-width: 900px) {
+    .hero-trace { left: 42%; opacity: .52; }.margin-question { display: none; }.definition-grid { grid-template-columns: 1fr; gap: 36px; }.practice-sequence { grid-template-columns: 1fr; }
+    .practice-card, .practice-card:first-child { min-height: auto; border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); }.field-note-grid { grid-template-columns: 110px 1fr; }.impact-field { display: none; }
+  }
+  @media (max-width: 640px) {
+    .home-hero, .hero-inner { min-height: 650px; }.hero-inner { padding-top: 82px; padding-bottom: 72px; align-items: flex-start; }h1 { font-size: 51px; }.hero-copy > p { font-size: 18px; }
+    .hero-trace { inset: 22% -35% 0 25%; opacity: .4; }.definition-grid { padding-top: 76px; padding-bottom: 78px; }.practice-section { padding: 78px 0 84px; }.section-heading > span { display: none; }
+    .practice-card { padding: 26px 24px 34px; }.field-note-grid { min-height: 470px; padding-top: 64px; padding-bottom: 68px; grid-template-columns: 1fr; gap: 42px; }blockquote p { font-size: 42px; }
+  }
 </style>

@@ -1,7 +1,7 @@
 export const hero = {
   eyebrow: "ἄσκησις · áskēsis · to exercise",
   heading: "Life as a practice,\nnot a project to be <em>optimized.</em>",
-  body: "The consistent daily effort of shaping a mind, a body, and a character — on purpose. This began as the record of one person's midlife transformation. Here are the tools, and what they cost.",
+  body: "The daily work of shaping a mind, a body, and a character—on purpose. A record of practice, inquiry, and one person's midlife transformation.",
   ctas: [
     {
       label: "Read on Substack ↗",
@@ -12,7 +12,7 @@ export const hero = {
 };
 
 export const definition = {
-  label: "",
+  label: "A working definition",
   lead: "The Greek <em>ἄσκησις</em> comes from the verb <em>ἀσκέω</em> — to work, to exercise, to practice a craft with care. It came to mean a disciplined practice centered on shaping one's mind, body, and character.",
   body: "This isn't asceticism. Not discipline disguised as denial. It is applied effort toward meaningful change — a process of becoming, repeated daily, with intention.",
 };
@@ -25,21 +25,27 @@ export const pillars = {
       glyph: "σῶμα",
       title: "Movement",
       greek: "",
-      body: "Movement is the most reliable lever to changing ones mental state. A feeling arises and affects our thoughts and our thoughts can dictate our actions. This cycle can be reversed by movement, allowing you to change your thoughts",
+      body: "Movement is the most reliable lever for changing one's mental state. Feeling shapes thought; thought shapes action. Movement lets us enter that cycle through the body and redirect it.",
     },
     {
       glyph: "λόγος",
       title: "Mind",
       greek: "",
-      body: "Our minds are useful, but can also lead us astray. Learning which thoughts to listen to and which ones to discard as a negative pattern. Learning this skill is the fastest way to learn how to refocus your mind toward what is useful. Mindfulness yes, but not just to 'relax' or reduce stress, but to live a more fullfilled life.",
+      body: "The mind is useful, but it also leads us astray. Attention teaches us which thoughts deserve an answer and which are only familiar patterns—not merely to relax, but to live more deliberately.",
     },
     {
       glyph: "ἦθος",
       title: "Character",
       greek: "",
-      body: "Development of the self through rigerous honesty, right actions, and the development of personal ethics. Done through the syncretism of Western and Eastern thought. Utilizing meditation and the Socratic Method.",
+      body: "Character is shaped through rigorous honesty and right action. Meditation makes the pattern visible; Socratic inquiry tests it; repeated practice makes a different response possible.",
     },
   ],
+};
+
+export const fieldNote = {
+  question: "What am I practicing becoming?",
+  statement: "Movement leaves a trace. Inquiry leaves a trace. Repeated traces become character.",
+  note: "Practice is not preparation for life. It is the shape a life takes.",
 };
 
 export const offeringsPreview = {
