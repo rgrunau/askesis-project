@@ -6,6 +6,7 @@ const { currentPage = '' } = Astro.props;
 
 const navLinks = [
   { label: 'Home', href: '/' },
+  { label: 'Articles', href: '/articles' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -29,15 +30,6 @@ const navLinks = [
           {link.label}
         </a>
       ))}
-      <a
-        href="https://askesisproject.substack.com"
-        target="_blank"
-        rel="noopener"
-        class="btn-primary"
-        style="margin-left: 10px; padding: 8px 16px; font-size: 13px; letter-spacing: 0.04em;"
-      >
-        Substack&nbsp;↗
-      </a>
     </nav>
 
     <!-- Mobile hamburger -->
@@ -82,18 +74,6 @@ const navLinks = [
       </a>
     ))}
   </nav>
-  <!-- Substack CTA at bottom of drawer -->
-  <div style="padding: 0 28px;">
-    <a
-      href="https://askesisproject.substack.com"
-      target="_blank"
-      rel="noopener"
-      class="btn-primary"
-      style="display: block; text-align: center; padding: 14px; font-size: 13px; letter-spacing: 0.04em;"
-    >
-      Read on Substack&nbsp;↗
-    </a>
-  </div>
 </div>
 
 <script>

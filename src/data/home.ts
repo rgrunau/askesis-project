@@ -4,9 +4,9 @@ export const hero = {
   body: "The daily work of shaping a mind, a body, and a character—on purpose. A record of practice, inquiry, and one person's midlife transformation.",
   ctas: [
     {
-      label: "Read on Substack ↗",
-      href: "https://askesisproject.substack.com",
-      external: true,
+      label: "Articles →",
+      href: "/articles",
+      external: false,
     },
   ],
 };
@@ -62,19 +62,19 @@ export const offeringsPreview = {
     {
       index: "02",
       title: "The Writing",
-      body: "Essays and weekly notes on discipline, movement, attention, and the work of becoming — free on Substack.",
-      cta: "Read on Substack →",
-      href: "https://askesisproject.substack.com",
-      external: true,
+      body: "Essays and notes on discipline, movement, attention, and the work of becoming.",
+      cta: "Read the articles →",
+      href: "/articles",
+      external: false,
     },
   ],
 };
 
-export const substackBand = {
+export const articlesBand = {
   eyebrow: "The Writing",
-  heading: "The whole notebook\nlives on Substack.",
-  body: "Essays and weekly notes from inside the practice — what I'm training, reading, and getting wrong. Free to read. Subscribe to follow along.",
-  cta: "Read on Substack ↗",
-  url: "https://askesisproject.substack.com",
-  urlLabel: "askesisproject.substack.com",
+  heading: "Notes from\ninside the practice.",
+  body: "Essays and notes on what I'm training, reading, and getting wrong.",
+  cta: "Read the articles →",
+  url: "/articles",
+  urlLabel: "Articles",
 };

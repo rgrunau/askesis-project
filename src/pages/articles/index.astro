@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt));
+
+const formatDate = (date: string) => new Intl.DateTimeFormat('en-US', {
+  month: 'long', day: 'numeric', year: 'numeric',
+}).format(new Date(`${date}T12:00:00`));
+---
+
+<BaseLayout title="Articles — The Askesis Project" description="Writing on movement, attention, character, and the daily work of becoming." currentPage="/articles">
+  <header class="articles-hero">
+    <div class="wrapper articles-hero-inner">
+      <div class="eyebrow">The writing / λόγος</div>
+      <h1>Notes from<br /><em>inside the practice.</em></h1>
+      <p>Essays on movement, attention, character, and the daily work of becoming.</p>
+    </div>
+  </header>
+
+  <section class="articles-list">
+    <div class="wrapper">
+      <div class="list-heading"><span>Index</span><span>{String(articles.length).padStart(2, '0')} articles</span></div>
+      {articles.length > 0 ? (
+        <div>
+          {articles.map((article, index) => (
+            <a class="article-row" href={`/articles/${article.slug}/`}>
+              <span class="article-number">{String(index + 1).padStart(2, '0')}</span>
+              <div><h2>{article.data.title}</h2><p>{article.data.description}</p></div>
+              <time datetime={article.data.publishedAt}>{formatDate(article.data.publishedAt)}</time>
+              <span class="arrow">→</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state"><p>The first article is being practiced.</p><span>Check back soon.</span></div>
+      )}
+    </div>
+  </section>
+  <NewsletterSignup source="articles-index" />
+</BaseLayout>
+
+<style>
+  .articles-hero { border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .articles-hero::after { content: ''; position: absolute; width: 420px; height: 420px; right: 8%; top: 12%; border: 1px solid rgba(201,138,110,.28); border-radius: 48% 52% 46% 54%; transform: rotate(-18deg); pointer-events: none; }
+  .articles-hero-inner { padding-top: 120px; padding-bottom: 110px; position: relative; z-index: 1; }
+  .eyebrow, .list-heading, .article-number, time, .empty-state span { font-family: var(--mono); text-transform: uppercase; letter-spacing: .16em; }
+  .eyebrow { color: var(--accent); font-size: 11px; margin-bottom: 30px; }
+  h1 { font-size: clamp(54px, 7vw, 96px); line-height: .96; letter-spacing: -.04em; font-weight: 350; margin: 0 0 30px; }
+  h1 em { color: var(--accent); font-weight: 300; }
+  .articles-hero p { color: var(--text-body); font-size: 20px; max-width: 540px; margin: 0; }
+  .articles-list { padding: 88px 0 120px; }
+  .list-heading { display: flex; justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--line); color: var(--text-muted); font-size: 10px; }
+  .article-row { display: grid; grid-template-columns: 60px 1fr 180px 28px; gap: 22px; align-items: center; color: var(--text); text-decoration: none; padding: 34px 0; border-bottom: 1px solid var(--line); }
+  .article-number, time { color: var(--text-muted); font-size: 10px; }
+  .article-row h2 { margin: 0 0 7px; font-size: 30px; font-weight: 400; }
+  .article-row p { margin: 0; color: var(--text-body); font-size: 16px; }
+  .arrow { color: var(--accent); font-size: 22px; transition: transform .2s ease; }
+  .article-row:hover h2 { color: var(--accent); }.article-row:hover .arrow { transform: translateX(5px); }
+  .empty-state { padding: 76px 0; border-bottom: 1px solid var(--line); }
+  .empty-state p { font-size: 34px; margin: 0 0 12px; }.empty-state span { color: var(--text-muted); font-size: 10px; }
+  @media (max-width: 640px) {
+    .articles-hero-inner { padding-top: 82px; padding-bottom: 82px; }.articles-hero::after { right: -55%; opacity: .55; }
+    .articles-list { padding: 64px 0 84px; }.article-row { grid-template-columns: 34px 1fr 20px; gap: 12px; }.article-row time { display: none; }.article-row h2 { font-size: 25px; }
+  }
+</style>

@@ -6,6 +6,7 @@ const { currentPage = '' } = Astro.props;
 
 const navLinks = [
   { label: 'Home', href: '/' },
+  { label: 'Articles', href: '/articles' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -34,7 +35,6 @@ const navLinks = [
       <div>
         <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #9a9186; margin-bottom: 18px;">Elsewhere</div>
         <div style="display: flex; flex-direction: column; gap: 11px; align-items: flex-start; font-size: 16px; color: #cdc3b2;">
-          <a href="https://askesisproject.substack.com" target="_blank" rel="noopener" style="color: #cdc3b2; text-decoration: none;" onmouseover="this.style.color='#ece5d6'" onmouseout="this.style.color='#cdc3b2'">Substack</a>
           <a href="#" style="color: #cdc3b2; text-decoration: none;" onmouseover="this.style.color='#ece5d6'" onmouseout="this.style.color='#cdc3b2'">Instagram</a>
           <a href="mailto:hello@askesisproject.com" style="color: #cdc3b2; text-decoration: none;" onmouseover="this.style.color='#ece5d6'" onmouseout="this.style.color='#cdc3b2'">hello@askesisproject.com</a>
         </div>
