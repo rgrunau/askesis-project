@@ -4,7 +4,7 @@ export const contactPageCopy = {
   body: 'Coaching enquiries, questions about the writing, or just a note. I read everything and reply to most.',
   contactDetails: [
     { label: 'Email', value: 'hello@askesisproject.com' },
-    { label: 'Substack', value: 'askesisproject.substack.com' },
+    { label: 'Writing', value: '/articles' },
   ],
 };
 

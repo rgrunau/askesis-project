@@ -1,0 +1,61 @@
+---
+interface Props {
+  source?: string;
+}
+
+const { source = 'site' } = Astro.props;
+const formId = `newsletter-${source.replace(/[^a-z0-9-]/gi, '-').toLowerCase()}`;
+---
+
+<section class="newsletter">
+  <div class="wrapper newsletter-grid">
+    <div class="newsletter-label"><span>Correspondence</span><span>λόγος / inbox</span></div>
+    <div class="newsletter-copy">
+      <h2>The practice,<br /><em>delivered occasionally.</em></h2>
+      <p>New articles on movement, attention, and character. No cadence to feed. No noise to keep up with.</p>
+    </div>
+    <div class="newsletter-form-wrap">
+      <form id={formId} class="newsletter-form" data-newsletter-form>
+        <input type="hidden" name="intent" value="newsletter" data-fs-field />
+        <input type="hidden" name="source" value={source} data-fs-field />
+        <label for={`${formId}-email`}>Email address</label>
+        <div class="input-row">
+          <input id={`${formId}-email`} type="email" name="email" placeholder="you@example.com" autocomplete="email" required data-fs-field />
+          <button type="submit" data-fs-submit-btn>Subscribe →</button>
+        </div>
+        <span class="field-error" data-fs-error="email"></span>
+      </form>
+      <div class="form-success" data-fs-success>You're on the list. The next article will find you.</div>
+      <div class="form-error" data-fs-error></div>
+      <p class="privacy">Just the writing. Unsubscribe whenever you like.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initForm } from '@formspree/ajax';
+  document.querySelectorAll<HTMLFormElement>('[data-newsletter-form]').forEach((form) => {
+    initForm({ formElement: `#${form.id}`, formId: 'xlgyrgag' });
+  });
+</script>
+
+<style>
+  .newsletter { border-top: 1px solid var(--line); background: var(--bg-alt); }
+  .newsletter-grid { padding-top: 88px; padding-bottom: 92px; display: grid; grid-template-columns: 150px minmax(330px, 1fr) minmax(340px, 470px); gap: 48px; align-items: center; }
+  .newsletter-label { align-self: start; display: flex; flex-direction: column; gap: 10px; color: var(--text-muted); font: 10px/1.2 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+  .newsletter-label span:last-child { color: var(--accent); }
+  h2 { margin: 0 0 20px; font-size: clamp(38px, 4vw, 58px); font-weight: 350; line-height: 1; letter-spacing: -.035em; }
+  h2 em { color: var(--accent); font-weight: 300; }
+  .newsletter-copy p { max-width: 500px; margin: 0; color: var(--text-body); font-size: 17px; line-height: 1.6; }
+  .newsletter-form label { display: block; margin-bottom: 10px; color: var(--text-muted); font: 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .input-row { display: grid; grid-template-columns: 1fr auto; }
+  input[type='email'] { min-width: 0; padding: 16px 15px; border: 1px solid rgba(var(--text-rgb), .24); border-right: 0; background: var(--bg-card); color: var(--text); font: 16px/1.2 'Newsreader', serif; outline: none; }
+  input[type='email']:focus { border-color: var(--accent); }
+  button { padding: 0 20px; border: 1px solid var(--text); background: var(--text); color: var(--ink); font: 11px/1 var(--mono); letter-spacing: .06em; }
+  button:hover { background: var(--cream-hover); border-color: var(--cream-hover); }
+  .field-error, .form-error { display: block; margin-top: 9px; color: var(--accent); font: 10px/1.4 var(--mono); }
+  .form-success { display: none; padding: 17px; border: 1px solid rgba(var(--text-rgb), .2); color: var(--text-body); font: 12px/1.5 var(--mono); }
+  .privacy { margin: 12px 0 0; color: var(--text-faint); font: 10px/1.4 var(--mono); }
+  @media (max-width: 960px) { .newsletter-grid { grid-template-columns: 100px 1fr; }.newsletter-form-wrap { grid-column: 2; } }
+  @media (max-width: 640px) { .newsletter-grid { padding-top: 68px; padding-bottom: 72px; grid-template-columns: 1fr; gap: 34px; }.newsletter-form-wrap { grid-column: auto; }.input-row { grid-template-columns: 1fr; }input[type='email'] { border-right: 1px solid rgba(var(--text-rgb), .24); }button { min-height: 50px; } }
+</style>

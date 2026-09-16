@@ -2,7 +2,7 @@ export const practicePageCopy = {
   eyebrow: 'Practice',
   heading: 'Two ways to work the practice with me.',
   subheading:
-    'From reading along on Substack to standing across the table from each other. Start anywhere; the work is the same.',
+    'From reading an article to standing across the table from each other. Start anywhere; the work is the same.',
 };
 
 export const offerings = [
@@ -23,9 +23,9 @@ export const offerings = [
   {
     numeral: 'ii',
     title: 'The Writing',
-    tag: 'Free · on Substack',
+    tag: 'Free · on this site',
     body: "The open notebook — the thinking the coaching is built on, written as it happens. Long-form essays plus a short note most Sundays on what I'm training, reading, and getting wrong. Free to read; subscribe to follow along.",
-    cta: { label: 'Read on Substack ↗', href: 'https://askesisproject.substack.com', external: true },
+    cta: { label: 'Read the articles →', href: '/articles', external: false },
     metaLabel: 'What to expect',
     meta: [
       'New essays, as they come',
