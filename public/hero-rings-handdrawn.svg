@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="180 70 870 870">
+  <defs>
+    <filter id="rough-orange" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.011 0.017" numOctaves="2" seed="14" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" seed="5" result="grain"/>
+      <feComposite in="grain" in2="wobble" operator="in" result="texture"/>
+      <feBlend in="wobble" in2="texture" mode="soft-light"/>
+    </filter>
+    <filter id="rough-white" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.016" numOctaves="2" seed="22" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="2" seed="11" result="grain"/>
+      <feComposite in="grain" in2="wobble" operator="in" result="texture"/>
+      <feBlend in="wobble" in2="texture" mode="soft-light"/>
+    </filter>
+    <filter id="rough-grey" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013 0.018" numOctaves="2" seed="31" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.76" numOctaves="2" seed="17" result="grain"/>
+      <feComposite in="grain" in2="wobble" operator="in" result="texture"/>
+      <feBlend in="wobble" in2="texture" mode="soft-light"/>
+    </filter>
+  </defs>
+  <g transform="rotate(-18 616 496)" filter="url(#rough-orange)" fill="none" stroke="#c98a6e" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M596 91C806 76 1008 232 1024 455C1041 682 868 888 638 902C408 916 199 754 207 512C215 274 381 106 596 91Z" stroke-width="7" opacity=".84"/>
+    <path d="M594 94C803 79 1005 235 1020 456C1036 679 865 883 637 897C411 911 204 751 211 513C219 278 382 110 594 94Z" stroke-width="2.2" opacity=".38"/>
+  </g>
+  <g transform="rotate(19 638 518)" filter="url(#rough-white)" fill="none" stroke="#ece5d6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M622 162C817 153 988 304 998 501C1009 699 854 875 652 878C449 882 274 733 278 526C282 318 434 171 622 162Z" stroke-width="6.2" opacity=".78"/>
+    <path d="M623 166C814 157 984 306 994 501C1005 696 851 870 652 874C452 878 279 730 282 526C286 322 437 175 623 166Z" stroke-width="2" opacity=".34"/>
+  </g>
+  <g transform="rotate(51 594 550)" filter="url(#rough-grey)" fill="none" stroke="#9a9186" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M579 241C746 231 894 357 904 535C915 715 783 857 606 861C427 865 284 744 283 560C282 375 419 251 579 241Z" stroke-width="6" opacity=".82"/>
+    <path d="M580 245C744 235 890 359 900 535C911 711 781 852 606 856C431 860 288 741 287 560C286 379 422 255 580 245Z" stroke-width="2" opacity=".36"/>
+  </g>
+</svg>

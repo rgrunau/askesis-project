@@ -1,7 +1,7 @@
 export const hero = {
   eyebrow: "ἄσκησις · áskēsis · to exercise",
   heading: "Life as a practice,\nnot a project to be <em>optimized.</em>",
-  body: "The daily work of shaping a mind, a body, and a character—on purpose. A record of practice, inquiry, and one person's midlife transformation.",
+  body: "Your life doesn't need to be optimized. It does need a strucutre that allows for growth and change; a revolving cycle of small improvements aimed at living with more intention.",
   ctas: [
     {
       label: "Articles →",
@@ -14,7 +14,7 @@ export const hero = {
 export const definition = {
   label: "A working definition",
   lead: "The Greek <em>ἄσκησις</em> comes from the verb <em>ἀσκέω</em> — to work, to exercise, to practice a craft with care. It came to mean a disciplined practice centered on shaping one's mind, body, and character.",
-  body: "This isn't asceticism. Not discipline disguised as denial. It is applied effort toward meaningful change — a process of becoming, repeated daily, with intention.",
+  body: "This isn't asceticism. It's not ten hacks to live mindfully, and it's not a stoic reset. It is a way to learn how movement shapes our minds, allowing us to dictate more of our actions. It open space to ask questions, of our society, yes, but more importantly about ourselves.",
 };
 
 export const pillars = {
@@ -43,8 +43,8 @@ export const pillars = {
 };
 
 export const fieldNote = {
-  statement: "Movement leaves a trace. Inquiry leaves a trace. Repeated traces become character.",
-  note: "Practice is not preparation for life. It is the shape a life takes.",
+  statement:"",
+  note: "In the last fourteen months I've come to see 'progress' not as a line on a graph that goes up and to the right, or as a faster 5k, lower body fat percentage, but as a series of ever expanding excentric circles, with each ring being an area of growth. This includes more physical capabilities, but deeper than that, it is an expansion of the way one lives. Aware of what needs to be improved without the weight of how you used to be. Old patterns reappear, but I am more capable of seeing them for what they are, a vestage of who I used to be and a trait that shapes who I can be, but turning from their negative influence.",
 };
 
 export const offeringsPreview = {
