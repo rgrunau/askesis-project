@@ -1,7 +1,7 @@
 export const hero = {
   eyebrow: "ἄσκησις · áskēsis · to exercise",
   heading: "Life as a practice,\nnot a project to be <em>optimized.</em>",
-  body: "The daily work of shaping a mind, a body, and a character—on purpose. A record of practice, inquiry, and one person's midlife transformation.",
+  body: "The work of living a fulfilled life of through disciplinedmovement, attention, and the formation of personal ethics. ",
   ctas: [
     {
       label: "Articles →",
