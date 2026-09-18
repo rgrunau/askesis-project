@@ -43,8 +43,8 @@ export const pillars = {
 };
 
 export const fieldNote = {
-  statement:"",
-  note: "In the last fourteen months I've come to see 'progress' not as a line on a graph that goes up and to the right, or as a faster 5k, lower body fat percentage, but as a series of ever expanding excentric circles, with each ring being an area of growth. This includes more physical capabilities, but deeper than that, it is an expansion of the way one lives. Aware of what needs to be improved without the weight of how you used to be. Old patterns reappear, but I am more capable of seeing them for what they are, a vestage of who I used to be and a trait that shapes who I can be, but turning from their negative influence.",
+  statement:"A series of ever expanding excentric circles.",
+  note: "In the last fourteen months I've come to see 'progress' not as a line on a graph that goes up and to the right, or as a faster 5k, lower body fat percentage, but as a series of ever expanding excentric circles, with each ring being an area of growth. This includes more physical capabilities, but deeper than that, it is an expansion of the way one lives. Aware of what needs to be improved without the weight of how you used to be. Old patterns reappear, but I am more capable of seeing them for what they are, a vestage of who I used to be and a trait that doesn't have to shape who you can be.",
 };
 
 export const offeringsPreview = {
