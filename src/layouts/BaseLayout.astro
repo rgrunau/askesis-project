@@ -7,12 +7,16 @@ interface Props {
   title?: string;
   description?: string;
   currentPage?: string;
+  minimal?: boolean;
+  noindex?: boolean;
 }
 
 const {
   title = 'The Askesis Project',
   description = 'Life as a practice, not a project to be optimized. Coaching, writing, and the consistent daily effort of becoming.',
   currentPage = '',
+  minimal = false,
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -24,15 +28,17 @@ const {
   <title>{title}</title>
   <link rel="icon" type="image/png" href="/enso.png" />
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  <slot name="head" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <Nav currentPage={currentPage} />
+  {!minimal && <Nav currentPage={currentPage} />}
   <main>
     <slot />
   </main>
-  <Footer currentPage={currentPage} />
+  {!minimal && <Footer currentPage={currentPage} />}
 </body>
 </html>
