@@ -3,18 +3,23 @@
 // Anything beginning with "TODO" is a placeholder for Robert's own words and
 // renders as a dashed box on the page. Do not publish while any TODO remains.
 // The page is also marked noindex until it is finished.
+//
+// Each section has a `visible` flag. Set it to false to hide that section
+// (dev and production alike) without deleting its copy; flip it back to true
+// to bring it back. Section numbers ("01", "02") are assigned automatically
+// from the sections that are visible.
 
 export const SUBSTACK_URL = 'https://askesisproject.substack.com/subscribe';
 
 export const hero = {
   eyebrow: 'ἄσκησις · áskēsis · to exercise',
-  // Robert's descriptor line. TODO: "lasting change" is generic; revisit.
-  heading: 'An embodied philosophy for building agency.',
-  sub: 'A free monthly newsletter exploring the venn diagram of mindfulness, Socratic questioning, and movement.',
+  heading: 'Askesis for me is learning the process of developing discipline.',
+  sub: 'The Askesis Project is a free newsletter that follows how I\'m learning discipline and making myself in my own image. This is done through investigating the self-questioning, meditation, and a physical philosophy.',
   cta: 'Subscribe',
 };
 
 export const recognition = {
+  visible: false,
   index: '01',
   label: 'Sound familiar',
   lines: [
@@ -25,17 +30,19 @@ export const recognition = {
 };
 
 export const method = {
+  visible: false,
   index: '02',
   label: 'The loop',
   intro: 'Being able to notice when a feeling arises allows the player to take action and learn to take actions that change your thoughts for the better.',
   steps: [
-    { label: 'Feeling', note: 'A response to stress' },
+    { label: 'Feeling', note: 'A response to stimuli' },
     { label: 'Thought', note: 'A hubitial tick in response to a feeling' },
     { label: 'Action', note: 'A rote movement or behavior in response to a thought' },
   ],
 };
 
 export const story = {
+  visible: true,
   index: '03',
   label: 'One day in production',
   // Robert's own text, verbatim. TODO: tighten, add what happened next,
@@ -47,6 +54,9 @@ export const story = {
 };
 
 export const closing = {
+  // Hides the closing note only. The Subscribe button after the story
+  // always renders.
+  visible: false,
   note: 'TODO: one line before the button.',
   cta: 'Subscribe',
 };

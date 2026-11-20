@@ -8,10 +8,16 @@ const isTodo = (s: string) => s.startsWith('TODO');
 const show = (s: string) => import.meta.env.DEV || !isTodo(s);
 
 const recLines = recognition.lines.filter(show);
-const hasRec = recLines.length > 0;
-const recIdx = '01';
-const methodIdx = hasRec ? '02' : '01';
-const storyIdx = hasRec ? '03' : '02';
+const hasRec = recognition.visible && recLines.length > 0;
+const hasMethod = method.visible;
+const hasStory = story.visible;
+const hasCloseNote = closing.visible && show(closing.note);
+
+// Number the visible sections in page order: 01, 02, ...
+const numbered = [hasRec && 'rec', hasMethod && 'method', hasStory && 'story'].filter(Boolean);
+const idx = (key: string) => String(numbered.indexOf(key) + 1).padStart(2, '0');
+
+const hasHeading = show(hero.heading);
 ---
 
 <BaseLayout title="The Askesis Project" currentPage="/" minimal noindex>
@@ -23,11 +29,11 @@ const storyIdx = hasRec ? '03' : '02';
     </div>
   </header>
 
-  <section class="start-hero">
+  <section class:list={['start-hero', { bare: !hasHeading }]}>
     <div class="rings-frame" aria-hidden="true"><img class="rings" src="/hero-rings-handdrawn.svg" alt="" /></div>
     <div class="wrapper hero-inner">
       <div class="kicker">{hero.eyebrow}</div>
-      <h1>{hero.heading}</h1>
+      {hasHeading && <h1 class:list={{ todo: isTodo(hero.heading) }}>{hero.heading}</h1>}
       {show(hero.sub) && <p class:list={['hero-sub', { todo: isTodo(hero.sub) }]}>{hero.sub}</p>}
       <a class="btn-primary" href={SUBSTACK_URL} target="_blank" rel="noopener">{hero.cta} →</a>
     </div>
@@ -36,7 +42,7 @@ const storyIdx = hasRec ? '03' : '02';
   {hasRec && (
     <section class="start-section alt">
       <div class="wrapper narrow">
-        <div class="index"><span>{recIdx}</span><span>{recognition.label}</span></div>
+        <div class="index"><span>{idx('rec')}</span><span>{recognition.label}</span></div>
         <div class="lines">
           {recLines.map((line) => <p class:list={['line', { todo: isTodo(line) }]}>{line}</p>)}
         </div>
@@ -44,9 +50,10 @@ const storyIdx = hasRec ? '03' : '02';
     </section>
   )}
 
+  {hasMethod && (
   <section class="start-section">
     <div class="wrapper narrow">
-      <div class="index"><span>{methodIdx}</span><span>{method.label}</span></div>
+      <div class="index"><span>{idx('method')}</span><span>{method.label}</span></div>
       {show(method.intro) && <p class:list={['method-intro', { todo: isTodo(method.intro) }]}>{method.intro}</p>}
       <ol class="steps">
         {method.steps.map((step, i) => (
@@ -59,19 +66,22 @@ const storyIdx = hasRec ? '03' : '02';
       </ol>
     </div>
   </section>
+  )}
 
+  {hasStory && (
   <section class="start-section alt">
     <div class="wrapper narrow">
-      <div class="index"><span>{storyIdx}</span><span>{story.label}</span></div>
+      <div class="index"><span>{idx('story')}</span><span>{story.label}</span></div>
       <p class="story">{story.body}</p>
       <p class="bridge">{story.bridge}</p>
       {show(story.after) && <p class:list={['story-after', { todo: isTodo(story.after) }]}>{story.after}</p>}
     </div>
   </section>
+  )}
 
   <section class="start-close">
     <div class="wrapper narrow">
-      {show(closing.note) && <p class:list={['close-note', { todo: isTodo(closing.note) }]}>{closing.note}</p>}
+      {hasCloseNote && <p class:list={['close-note', { todo: isTodo(closing.note) }]}>{closing.note}</p>}
       <a class="btn-primary" href={SUBSTACK_URL} target="_blank" rel="noopener">{closing.cta} →</a>
     </div>
   </section>
@@ -91,6 +101,10 @@ const storyIdx = hasRec ? '03' : '02';
   .hero-inner > * { max-width: 820px; }
   .kicker { font: 11px/1.4 var(--mono); letter-spacing: .24em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
   h1 { margin: 0 0 28px; font-family: 'Instrument Serif', 'Newsreader', serif; font-weight: 400; font-size: clamp(46px, 9.5vw, 92px); line-height: 1.02; letter-spacing: -.02em; text-wrap: balance; }
+  /* No headline yet (production while it is a TODO): tighten the hero so the
+     kicker, rings and button read as a deliberate band, not an empty one. */
+  .start-hero.bare .hero-inner { padding-top: 56px; padding-bottom: 64px; }
+  .start-hero.bare .kicker { margin-bottom: 32px; }
   .hero-sub { margin: 0 0 36px; max-width: 540px; color: var(--text-body); font-size: 19px; line-height: 1.6; }
 
   .start-section { padding: 72px 0; border-bottom: 1px solid var(--line); }
@@ -120,6 +134,7 @@ const storyIdx = hasRec ? '03' : '02';
   @media (min-width: 900px) {
     .rings { right: 0; top: 6%; width: 560px; }
     .hero-inner { padding-top: 120px; padding-bottom: 130px; }
+    .start-hero.bare .hero-inner { padding-top: 88px; padding-bottom: 96px; }
     .start-section { padding: 104px 0; }
     .steps { grid-template-columns: repeat(3, 1fr); border-top: 0; }
     .steps li { display: block; padding: 28px 28px 34px; border: 0; border-top: 1px solid var(--line); border-right: 1px solid var(--line); }
